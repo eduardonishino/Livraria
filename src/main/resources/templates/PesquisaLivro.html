@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Pesquisar Livros</title>
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+</head>
+<body>
+
+<div class="panel panel-default">
+   	<div class="panel-heading">
+      		<h1 class="panel-title">Pesquisa de títulos</h1>
+      		<a class="btn btn-link aw-link-panel" href="/livro">Voltar menu</a>
+      	</div>
+      	
+      	<div class="panel-body">
+      		<table class="table table-bordered table-striped">
+      			<thead>
+      				<tr>
+      					<th class="text-center col-md-1">#</th>
+      					<th class="text-center">Titulos</th>
+      					<th class="text-center col-md-2">Autor</th>
+      					<th class="text-center col-md-2">Editora</th>
+      					<th class="text-center col-md-2">Valor</th>
+      					<th class="text-center col-md-2">Impresso/Eletrônico</th>
+      					<th class="col-md-1"></th>
+      				</tr>
+      			</thead>
+      			<tbody>
+      			    <tr th:each="livros :${listalivro}">
+      			        <td class="text-center" th:text="${livros.codigo}">1</td>
+      			        <td th:text="${livros.descricao}"></td>
+      			        <td th:text="${livros.autor}"></td>
+      			        <td th:text="${livros.editora}"></td>
+      			        <td class="text-center" th:text="${{livros.valor}}"></td>
+      			    </tr>
+      				<tr>
+      					<td colspan="8" th:if="${#lists.isEmpty(listalivro)}">Nenhum livro foi encontrado</td>
+      				</tr>
+      			</tbody>
+      		</table>
+      	</div>
+   </div>
+
+</body>
+</html>

@@ -1,5 +1,7 @@
 package br.com.livraria.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,14 +18,22 @@ public class LivrariaController {
 	@Autowired
 	private LivrariaRepository livraria;
 	
-	@RequestMapping("/menu")
+	@RequestMapping()
 	public String menu() {
 		return "Menu";
 	}
 	
-	@RequestMapping("/menu/novo")
+	@RequestMapping("menu/novo")
 	public String novo() {
 		return "CadastroLivro";
+	}
+	
+	@RequestMapping("menu/pesquisalivro")
+	public ModelAndView pesquisarLivro() {
+		List<LivroDAO> listatodos = livraria.findAll();
+		ModelAndView mv = new ModelAndView("PesquisaLivro");
+		mv.addObject("listalivro", listatodos);
+		return mv;
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
